@@ -36,6 +36,7 @@ target 'trilltest' do
 
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
   target 'trilltestTests' do
     inherit! :search_paths
     # Pods for testing
