@@ -2,6 +2,10 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import firebase from 'react-native'
+import MapboxGL from '@react-native-mapbox-gl/maps';
+MapboxGL.setAccessToken("pk.eyJ1IjoibWdvbGRmaTEiLCJhIjoiY2sycTA5a2pkMGEwdTNlbXduYmNjY2V6NCJ9.sO2JLZb14odxmPXOgcvQ7A");
+
+
 export default class SignUp extends React.Component {
   state = { email: '', password: '', errorMessage: null }
 handleSignUp = () => {
@@ -15,39 +19,22 @@ handleSignUp = () => {
 }
 render() {
     return (
-      <View style={styles.container}>
-        <Text>Sign Up</Text>
-        {this.state.errorMessage &&
-          <Text style={{ color: 'red' }}>
-            {this.state.errorMessage}
-          </Text>}
-        <TextInput
-          placeholder="Email"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={email => this.setState({ email })}
-          value={this.state.email}
-        />
-        <TextInput
-          secureTextEntry
-          placeholder="Password"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
-        <Button title="Sign Up" onPress={this.handleSignUp} />
-        <Button
-          title="Already have an account? Login"
-          onPress={() => this.props.navigation.navigate('Login')}
-        />
+       
+          <View style={{flex: 1}}>
+          <MapboxGL.MapView
+          style={{flex: 1}}
+          >
+            <MapboxGL.Camera  zoomLevel={12} centerCoordinate={[-73.967682,40.780390]}/>
+        </MapboxGL.MapView>
       </View>
+    
     )
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center'
   },
